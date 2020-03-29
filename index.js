@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const cron = require('node-cron');
 const fetch = require('node-fetch');
 const twilio = require('twilio');
 
@@ -25,7 +26,8 @@ async function notify(productId) {
   }
 }
 
-(async function run() {
+async function run() {
+  console.log('Haetaan saatavuustietoja...');
   try {
     const res = await fetch(url);
     const json = await res.json();
@@ -38,4 +40,6 @@ async function notify(productId) {
   } catch (e) {
     console.error(e);
   }
-})();
+}
+
+cron.schedule('* * * * *', run);
