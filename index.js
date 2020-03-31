@@ -21,6 +21,7 @@ async function notify(productId) {
       to: `whatsapp:${process.env.NUMBER_TO}`,
       from: `whatsapp:${process.env.NUMBER_FROM}`
     });
+    process.exit();
   } catch (error) {
     console.error(error);
   }
